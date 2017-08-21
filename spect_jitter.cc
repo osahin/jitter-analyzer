@@ -13,8 +13,8 @@ int main (){
 
 
 
-  csv.read("/Users/ozgursahin/Documents/PCD-SSA-E5052B/1st-measures-eLink-clk.csv", jitter, "VLDB e-link@40 MHz - loopBW-threshold 100 Hz");
-  csv.read("/Users/ozgursahin/Documents/PCD-SSA-E5052B/elinkjitterspectrum40mhztlb400long2ch.csv", jitter2, "VLDB e-link@40 MHz - loopBW-threshold 400 Hz");
+  csv.read("./examples/1st-measures-eLink-clk.csv", jitter, "VLDB e-link@40 MHz - loopBW-threshold 100 Hz");
+  csv.read("./examples/elinkjitterspectrum40mhztlb400long2ch.csv", jitter2, "VLDB e-link@40 MHz - loopBW-threshold 400 Hz");
 
   //  jitter_handler jhandler(120.234);
   jitter_handler jhandler(40.078);
