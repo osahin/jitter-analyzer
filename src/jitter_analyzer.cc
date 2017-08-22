@@ -21,7 +21,6 @@ double jitter_handler::integrate( const source_jitter & sj) {
       integral += (std::pow(10.,(iter+1)->at(1)/10.)+std::pow(10.,(iter+1)->at(1)/10.))/2.*((iter+1)->at(0)-iter->at(0)); 
     }
   }
-  std::cout << "integrated area under spectrum: " << integral << std::endl;
   return integral;
 }
 /* returns the RMS jitter of the integrated value */
