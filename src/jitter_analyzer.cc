@@ -14,11 +14,11 @@
 double pi() { return std::atan(1)*4; }
 /* returns the area under curve (trapezoidal algorithm - seems to be the best among the popular ones) */
 double jitter_handler::integrate( const source_jitter & sj) {
-  double integral = 0;
+  double integral = 0.;
   double minPower = sj.jitter.front().at(1);
   for(auto iter = sj.jitter.begin(); iter+1 != sj.jitter.end(); iter++){
-    if( iter->at(0) < _maxFreq && iter->at(0) > _minFreq){
-      integral += (std::pow(10.,(iter+1)->at(1)/10.)+std::pow(10.,(iter+1)->at(1)/10.))/2.*((iter+1)->at(0)-iter->at(0)); 
+    if( (iter+1)->at(0) < _maxFreq && iter->at(0) > _minFreq){
+      integral += (std::pow(10.,(iter+1)->at(1)/10.)+std::pow(10.,iter->at(1)/10.))/2.*((iter+1)->at(0)-iter->at(0)); 
     }
   }
   return integral;
