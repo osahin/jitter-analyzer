@@ -18,7 +18,11 @@ int main (){
   /* initializing the jitter handler interface class with the reference clock frequency */
   // jitter_handler jhandler(120.234);
   jitter_handler jhandler(40.078);
-  jhandler.set_min_freq(10.000);
+  /* set minimum offset freq */
+  double minF = 10.000;
+  double maxF = 1.0e6;
+  jhandler.set_min_freq(minF);
+  jhandler.set_max_freq(maxF);
 
   /* returns jitter value */
   std::cout<< "RMS jitter: " << jhandler.rms_jitter(jitter)  << std::endl;
@@ -27,8 +31,8 @@ int main (){
   //  std::cout<< jhandler.rms_jitter(jitter4) << std::endl;
   /* plotting jitter data !! Please make sure to call the jitter_handler's rms_jitter method before adding plots to get the jitter values on the graph */
   plot_jitter graph;
-  graph.add_plot(jitter);
-  graph.add_plot(jitter2);
+  graph.add_plot(jitter,minF,maxF);
+  graph.add_plot(jitter2,minF,maxF);
   //  graph.add_plot(jitter3);
   //  graph.add_plot(jitter4);
   graph.print_plot();

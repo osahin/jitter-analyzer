@@ -29,6 +29,7 @@ double jitter_handler::rms_jitter(source_jitter & sj){
   sj.RMSJitter = RMSJitter;
   return RMSJitter;
 }
+
 /* Adding new entities to the jitter plots */
 void plot_jitter::add_plot(const source_jitter & sj){
   double x[sj.jitter.size()], y[sj.jitter.size()];
@@ -47,6 +48,32 @@ void plot_jitter::add_plot(const source_jitter & sj){
   _graphJitter.push_back(sj.RMSJitter);
   _graphLegend.push_back(sj.sampleTitle);
 }
+
+/* Adding new entities to the jitter plots with selected range */
+void plot_jitter::add_plot(const source_jitter & sj, const double  minFreq, const double  maxFreq){
+  double x[sj.jitter.size()], y[sj.jitter.size()];
+
+  int ind = 0;
+  //for(auto const &iter : sj.jitter){
+  for(auto iter = sj.jitter.begin(); iter+1 != sj.jitter.end(); iter++){
+    if( (iter+1)->at(0) < maxFreq && iter->at(0) > minFreq){
+      x[ind] = iter->at(0);
+      y[ind] = iter->at(1);
+      ind++;
+    }
+  }
+
+  TGraph *jitterG = new TGraph (ind,x,y);
+  TString name(sj.fileName);
+  name= ((TObjString*)((TObjArray*)(name.Tokenize("/"))->Last()))->GetString();
+  std::cout << "Plotting " << name << std::endl;
+  jitterG->SetName(name);
+  _graphs.push_back(jitterG);
+  _graphJitter.push_back(sj.RMSJitter);
+  _graphLegend.push_back(sj.sampleTitle);
+}
+
+
 /* printing the plots (saving the root files and a PDF output), this method also deals with makeup and legend of the plots  */
 void plot_jitter::print_plot(){
   TCanvas * JitterCanvas = new TCanvas("JitterGraph", "JitterGraph", 900, 600);
