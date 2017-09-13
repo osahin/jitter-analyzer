@@ -61,8 +61,9 @@ void plot_jitter::add_plot_range(const source_jitter & sj, const double  minFreq
       y[ind] = iter->at(1);
       ind++;
     }
-  } 
-  TGraph *jitterG = new TGraph (sj.jitter.size(),x,y);
+  }
+
+  TGraph *jitterG = new TGraph (ind,x,y);
   TString name(sj.fileName);
   name= ((TObjString*)((TObjArray*)(name.Tokenize("/"))->Last()))->GetString();
   std::cout << "Plotting " << name << std::endl;
