@@ -50,7 +50,7 @@ void plot_jitter::add_plot(const source_jitter & sj){
 }
 
 /* Adding new entities to the jitter plots with selected range */
-void plot_jitter::add_plot_range(const source_jitter & sj, const double  minFreq, const double  maxFreq){
+void plot_jitter::add_plot(const source_jitter & sj, const double  minFreq, const double  maxFreq){
   double x[sj.jitter.size()], y[sj.jitter.size()];
 
   int ind = 0;

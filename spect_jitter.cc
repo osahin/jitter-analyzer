@@ -31,8 +31,8 @@ int main (){
   //  std::cout<< jhandler.rms_jitter(jitter4) << std::endl;
   /* plotting jitter data !! Please make sure to call the jitter_handler's rms_jitter method before adding plots to get the jitter values on the graph */
   plot_jitter graph;
-  graph.add_plot_range(jitter,minF,maxF);
-  graph.add_plot_range(jitter2,minF,maxF);
+  graph.add_plot(jitter,minF,maxF);
+  graph.add_plot(jitter2,minF,maxF);
   //  graph.add_plot(jitter3);
   //  graph.add_plot(jitter4);
   graph.print_plot();

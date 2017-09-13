@@ -29,7 +29,7 @@ class jitter_handler{
 class plot_jitter{
  public:
   void add_plot(const source_jitter & sj);
-  void add_plot_range(const source_jitter & sj, double, double);
+  void add_plot(const source_jitter & sj, double, double);
   void print_plot();
  private:
   std::vector<TGraph*> _graphs;
