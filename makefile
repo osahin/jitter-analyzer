@@ -31,12 +31,16 @@ else
 endif
 
 
-all: spect_jitter
+all: spect_jitter gen_clock
 spect_jitter:$(JITTER_DIR)/spect_jitter.cc $(JITTER_SRC)/csv_reader.cc jitter.o 
 	@echo "Compiling $@..." 	
 	$(CXX) $(CXX_FLAGS) $(JITTER_DIR)/spect_jitter.cc $(JITTER_SRC)/csv_reader.cc jitter.o $(INCS) $(ROOT_LIBS) -o spect_jitter -lm 
 	@echo "Done." 		
 jitter.o:$(JITTER_SRC)/jitter_analyzer.cc $(JITTER_LIB)/jitter_analyzer.h
 	$(CXX) $(CXX_FLAGS) -o jitter.o -c  $(JITTER_SRC)/jitter_analyzer.cc
+gen_clock:$(JITTER_DIR)/generate_clock.cc $(JITTER_LIB)/clock_gen.h $(JITTER_SRC)/clock_gen.cc
+	@echo "Compiling $@..." 	
+	$(CXX) $(CXX_FLAGS) $(JITTER_DIR)/generate_clock.cc $(JITTER_SRC)/clock_gen.cc $(INCS) $(ROOT_LIBS) -o gen_clock -lm 
+	@echo "Done." 		 
 clean:
-	rm -f *~ spect_jitter jitter.o
+	rm -f *~ spect_jitter jitter.o gen_clock
