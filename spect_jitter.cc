@@ -16,11 +16,11 @@ int main (){
   csv.read("./examples/1st-measures-eLink-clk.csv", jitter, "VLDB e-link@40 MHz - loopBW-threshold 100 Hz");
   csv.read("./examples/elinkjitterspectrum40mhztlb400long2ch.csv", jitter2, "VLDB e-link@40 MHz - loopBW-threshold 400 Hz");
   /* initializing the jitter handler interface class with the reference clock frequency */
-  // jitter_handler jhandler(120.234);
+  //  jitter_handler jhandler(120.234);
   jitter_handler jhandler(40.078);
   /* set minimum offset freq */
-  double minF = 10.000;
-  double maxF = 1.0e6;
+  double minF = 100.009;
+  double maxF = 1.01e7;
   jhandler.set_min_freq(minF);
   jhandler.set_max_freq(maxF);
 

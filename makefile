@@ -24,7 +24,7 @@ endif
 
 ifeq ("$(OS)","Darwin")
 	CXX_FLAGS += -std=c++14
-	INCS = -I/usr/include -I${ROOTSYS}/include -I$(JITTER_LIB) -lz -lCore
+	INCS = -v -I/usr/include -I${ROOTSYS}/include -I$(JITTER_LIB) -lz -lCore
 else
 	CXX_FLAGS += -std=c++0x
 	INCS = -I/usr/include -I${ROOTSYS}/include -I$(JITTER_LIB) -L/usr/lib64 -lz -lCore		
