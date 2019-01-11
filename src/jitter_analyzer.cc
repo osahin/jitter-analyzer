@@ -75,29 +75,48 @@ void plot_jitter::add_plot(const source_jitter & sj, const double  minFreq, cons
 
 
 /* printing the plots (saving the root files and a PDF output), this method also deals with makeup and legend of the plots  */
-void plot_jitter::print_plot(){
-  TCanvas * JitterCanvas = new TCanvas("JitterGraph", "JitterGraph", 900, 600);
+void plot_jitter::print_plot(TString graphName){
+  TCanvas * JitterCanvas = new TCanvas("JitterGraph", graphName, 1200, 1000);
+
   JitterCanvas->cd();
   int index = 0;
-  TFile * jitterFile = new TFile("JitterPlots.root", "RECREATE");
+  TFile * jitterFile = new TFile(graphName+"JitterPlots.root", "RECREATE");
   TString dtos;
-  auto legend = new TLegend(0.38,0.58,0.88,0.88);
+  auto legend = new TLegend(0.65,0.88-_graphs.size()*0.03,0.92,0.92);
   legend->SetTextFont(4);
   legend->SetTextSize(18);
-
+  int color;
   for(auto const &iter: _graphs){
+    if (index < 9) 
+      color = index+1;
+    else 
+      color = index*2+index;
+	      
 
-    iter->SetLineColor(1+index);
-    iter->SetTitle("");
+    iter->SetLineColorAlpha(color,0.9);
+    iter->SetTitle( graphName );
     iter->GetXaxis()->SetTitle("Offset freq. [Hz]");
-    iter->GetYaxis()->SetTitle("Phase noise [dBc/Hz]");
+
+    iter->GetYaxis()->SetTitle("Phase noise [dBc]");
     iter->SetLineWidth(2);
+
+    iter->GetYaxis()->SetTitleOffset(1.25);
+    iter->GetXaxis()->SetTitleOffset(1.05);
+
+    iter->GetYaxis()->SetTitleSize(0.05);
+    iter->GetXaxis()->SetTitleSize(0.05);
+
     legend->AddEntry(iter,(TString)_graphLegend.at(index),"l");
+    std::cout << "jitter read at this point: " << _graphJitter.at(index) << std::endl;;
     dtos.Form("%.2lf",(_graphJitter.at(index)));
-    TText *jinfo = new TText(0.15,0.35-0.05*(1.+index),(TString)"RMS: "+dtos+" ps");
+    TText *jinfo;
+    if ( index < 8) 
+      jinfo = new TText(0.18,0.45-0.028*(1.+index),(TString)"RMS: "+dtos+" ps");
+    else
+      jinfo = new TText(0.32,0.45-0.028*(index-7.),(TString)"RMS: "+dtos+" ps");
     jinfo->SetTextFont(4);
     jinfo->SetTextSize(22);
-    jinfo->SetTextColor(1+index);
+    jinfo->SetTextColor(color);
     jinfo->SetNDC();
     if(0 == index) 
       iter->Draw("AC");
@@ -106,12 +125,20 @@ void plot_jitter::print_plot(){
     index++;
     iter->Write();
   }
+
   legend->SetLineWidth(0);
   legend->Draw();
+  JitterCanvas->SetTickx();
+  JitterCanvas->SetTicky();
+  JitterCanvas->SetRightMargin(0.05);
+  JitterCanvas->SetLeftMargin(0.14);
+  JitterCanvas->SetTopMargin(0.07);
+  JitterCanvas->SetBottomMargin(0.16);
+
   JitterCanvas->SetLogx();
   JitterCanvas->Update();
   JitterCanvas->Modified();
-  JitterCanvas->SaveAs("jitter.pdf");
+  JitterCanvas->SaveAs(graphName+"jitter.pdf");
   JitterCanvas->Write();
   jitterFile->Close();
 };

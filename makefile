@@ -14,7 +14,7 @@ ifndef ROOTSYS
 $(error ROOTSYS is not defined!)
 endif
 
-ROOT_LIBS = `root-config --libs` -lGenVector -lMathMore -lMinuit2
+ROOT_LIBS = `root-config --libs` -lGenVector -lMathMore -lMinuit
 ifeq ($(OMP_ENABLE),1)
 	CXX_FLAGS =  -O3 -fPIC -fopenmp `root-config --cflags`
 else
@@ -26,7 +26,7 @@ ifeq ("$(OS)","Darwin")
 	CXX_FLAGS += -std=c++14
 	INCS = -v -I/usr/include -I${ROOTSYS}/include -I$(JITTER_LIB) -lz -lCore
 else
-	CXX_FLAGS += -std=c++0x
+	CXX_FLAGS += -std=c++1y
 	INCS = -I/usr/include -I${ROOTSYS}/include -I$(JITTER_LIB) -L/usr/lib64 -lz -lCore		
 endif
 

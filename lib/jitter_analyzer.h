@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <TString.h>
 #include <TGraph.h>
 struct source_jitter{
   std::vector<std::vector<double>> jitter;
@@ -30,7 +31,7 @@ class plot_jitter{
  public:
   void add_plot(const source_jitter & sj);
   void add_plot(const source_jitter & sj, double, double);
-  void print_plot();
+  void print_plot(TString graphName);
  private:
   std::vector<TGraph*> _graphs;
   std::vector<double> _graphJitter;
