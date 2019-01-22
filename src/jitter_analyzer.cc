@@ -124,6 +124,7 @@ void plot_jitter::print_plot(TString graphName){
     jinfo->Draw();
     index++;
     iter->Write();
+  JitterCanvas->Update();
   }
 
   legend->SetLineWidth(0);
