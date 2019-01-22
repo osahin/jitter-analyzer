@@ -14,7 +14,5 @@ For the clock generation, "generate_clock.cc" should be modified with with the d
   ./gen_clock
   
 **Important**
-
-  Currently it only handles a modified version of the csv files ( commas "," are required to be replaced with a blank space " " and the first line should be deleted).
   
   The library requires ROOT6 (mainly for the plotting functionality).
