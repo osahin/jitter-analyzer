@@ -79,6 +79,7 @@ void plot_jitter::print_plot(TString graphName){
   TCanvas * JitterCanvas = new TCanvas("JitterGraph", graphName, 1200, 1000);
 
   JitterCanvas->cd();
+  JitterCanvas->SetLogx();
   int index = 0;
   TFile * jitterFile = new TFile(graphName+"JitterPlots.root", "RECREATE");
   TString dtos;
@@ -136,7 +137,7 @@ void plot_jitter::print_plot(TString graphName){
   JitterCanvas->SetTopMargin(0.07);
   JitterCanvas->SetBottomMargin(0.16);
 
-  JitterCanvas->SetLogx();
+
   JitterCanvas->Update();
   JitterCanvas->Modified();
   JitterCanvas->SaveAs(graphName+"jitter.pdf");
