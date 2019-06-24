@@ -10,8 +10,14 @@
 bool csv_reader::read( const std::string & fileName, source_jitter & sj, TString sampleTitle){
   std::cout << fileName << std::endl;
   std::fstream csv_file(fileName);
-    if(!csv_file) return false;
-    std::vector<double> jitterValues(2,0);
+  //error mesage in case of mis-named file
+  if(!csv_file){
+    std::cout <<  "Error. No such file exists."<< std::endl;
+    throw 5;
+
+ return false;
+  } 
+   std::vector<double> jitterValues(2,0);
     std::string line;
     TObjArray* list;
     TString * value = new TString;

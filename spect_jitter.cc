@@ -3,9 +3,10 @@
 #include <TCanvas.h>
 #include <TStyle.h>
 int main (){
-  TString PATH = "/Users/osahin/Projects/";
-  //  TString fileName = "DifferentFly640_FE640_160Mhz_spectrum.log";
-  TString fileName = "CommonFly640_FE640_160Mhz_spectrum.log";
+
+  TString PATH = "/Users/yunus/analiz/jitter_1/jitter-analyzer/examples/";
+  //  TString fileName = ""
+  TString fileName = "elinkjitterspectrum40mhztlb400long2ch.csv";
   jitter_handler jhandler(160.0);
   /* set minimum offset freq */
   double minF = 0.999;
@@ -18,7 +19,11 @@ int main (){
   csv_reader csv;
   /* jitter info container */
   source_jitter jitter;
+  try{
   csv.read(TString(PATH+fileName).Data(), jitter, TString("Single"));
+  }catch (int a){
+    return 0; }
+
   std::cout <<  jhandler.rms_jitter(jitter) << std::endl;
   /* returns jitter value */
   graph.add_plot(jitter,minF,maxF);
