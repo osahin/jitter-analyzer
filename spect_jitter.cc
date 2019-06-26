@@ -7,7 +7,7 @@ int main (){
   TString PATH = "/Users/yunus/analiz/jitter_1/jitter-analyzer/examples/";
   //  TString fileName = ""
   TString fileName = "elinkjitterspectrum40mhztlb400long2ch.csv"; //elinkjitterspectrum40mhztlb400long2ch
-  TString fileName2 = "1st-measures-eLink-clk.csv";
+  TString fileName2 = "st-measures-eLink-clk.csv";
  jitter_handler jhandler(160.0);
   /* set minimum offset freq */
   double minF = 0.999;
@@ -24,21 +24,19 @@ int main (){
   csv.read(TString(PATH+fileName).Data(), jitter, TString("Single"));
   }catch(const int a){return 0;}
   std::cout << " first file -rms_jitter--> " << jhandler.rms_jitter(jitter) << std::endl;
-  std::cout <<  jhandler.rms_jitter(jitter) << std::endl;
-  graph.add_plot(jitter,minF,maxF);
-  graph.print_plot("");
 //second one
-  jhandler.set_min_freq(minF);
-  jhandler.set_max_freq(maxF);
   try{
   csv.read(TString(PATH+fileName2).Data(), jitter2, TString("Double"));
   }catch(const int b){return 0;}
-  std::cout << " second file --------------------> " << jhandler.rms_jitter(jitter2) << std::endl;
-  std::cout <<  jhandler.rms_jitter(jitter2) << std::endl;
+  std::cout << " second file -rms_jitter --> " << jhandler.rms_jitter(jitter2) << std::endl;
 /* returns jitter value */
-  
   graph.add_plot(jitter2,minF,maxF); 
- 
+
+  graph.add_plot(jitter,minF,maxF);
+
+
+  graph.print_plot("");
+
   graph.print_plot("same");
   
 

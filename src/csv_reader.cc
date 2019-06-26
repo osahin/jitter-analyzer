@@ -12,7 +12,7 @@ bool csv_reader::read( const std::string & fileName, source_jitter & sj, TString
   std::fstream csv_file(fileName);
   //error mesage in case of mis-named file
   if(!csv_file){
-    std::cout <<  "Error. No file named "<< sj.fileName<< "exists" << std::endl;
+  std::cout <<  "Error. No such  file at "<<fileName<< " exists" << std::endl;
     throw 1;
  return false;
 
