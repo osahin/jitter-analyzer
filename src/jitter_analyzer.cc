@@ -27,7 +27,8 @@ double jitter_handler::integrate( const source_jitter & sj) {
 double jitter_handler::rms_jitter(source_jitter & sj){
   double RMSJitter = std::sqrt(2.*integrate(sj))/(2.*pi()*_refFreq*1.e-6);
   sj.RMSJitter = RMSJitter;
-  return RMSJitter;
+  std::cout<<sj.RMSJitter<<std::endl;
+ return RMSJitter;
 }
 
 /* Adding new entities to the jitter plots */
@@ -77,7 +78,6 @@ void plot_jitter::add_plot(const source_jitter & sj, const double  minFreq, cons
 /* printing the plots (saving the root files and a PDF output), this method also deals with makeup and legend of the plots  */
 void plot_jitter::print_plot(TString graphName){
   TCanvas * JitterCanvas = new TCanvas("JitterGraph", graphName, 1200, 1000);
-
   JitterCanvas->cd();
   JitterCanvas->SetLogx();
   int index = 0;

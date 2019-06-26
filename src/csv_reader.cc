@@ -12,11 +12,11 @@ bool csv_reader::read( const std::string & fileName, source_jitter & sj, TString
   std::fstream csv_file(fileName);
   //error mesage in case of mis-named file
   if(!csv_file){
-    std::cout <<  "Error. No such file exists."<< std::endl;
-    throw 5;
-
+    std::cout <<  "Error. No file named "<< sj.fileName<< "exists" << std::endl;
+    throw 1;
  return false;
-  } 
+
+  }
    std::vector<double> jitterValues(2,0);
     std::string line;
     TObjArray* list;
@@ -43,6 +43,7 @@ bool csv_reader::read( const std::string & fileName, source_jitter & sj, TString
 	    (value) =(& ((TObjString*)next())->String()); 
 	    jitterValues.at(i) = (value->ReplaceAll(",","")).Atof();
 	  }
+	 
 	  std::cout << jitterValues.at(0) << std::endl;
 	  std::cout << jitterValues.at(1) << std::endl;
 
@@ -51,6 +52,7 @@ bool csv_reader::read( const std::string & fileName, source_jitter & sj, TString
     }
     sj.fileName = fileName;
     sj.sampleTitle = sampleTitle;
-    return true;
+      
+  return true;
 }
 
