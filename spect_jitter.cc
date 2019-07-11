@@ -7,7 +7,7 @@ int main (){
   TString PATH = "/Users/yunus/analiz/jitter_1/jitter-analyzer/examples/";
   //  TString fileName = ""
   TString fileName = "elinkjitterspectrum40mhztlb400long2ch.csv"; //elinkjitterspectrum40mhztlb400long2ch
-  TString fileName2 = "st-measures-eLink-clk.csv";
+  TString fileName2 = "1st-measures-eLink-clk.csv";
  jitter_handler jhandler(160.0);
   /* set minimum offset freq */
   double minF = 0.999;
