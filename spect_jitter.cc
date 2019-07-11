@@ -22,7 +22,7 @@ int main (){
   source_jitter jitter, jitter2;
   try{
   csv.read(TString(PATH+fileName).Data(), jitter, TString("Single"));
-  }catch(const int a){return 0;} //"const int a" here is just d dummy used for cathcing
+  }catch(const int a){return 0;} //"const int a" here is just a dummy used for cathcing
   std::cout << " first file -rms_jitter--> " << jhandler.rms_jitter(jitter) << std::endl;
 //second one
   try{
