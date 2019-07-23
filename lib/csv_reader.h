@@ -8,7 +8,7 @@
 
 class csv_reader{
  public:
-  bool read( const std::string & fileName, source_jitter & sj, TString sampleTitle);
+  bool read( const std::string & fileName, source_jitter & sj, TString sampleTitle, bool readoutTDC = false);
   csv_reader(){};
 };
 #endif
