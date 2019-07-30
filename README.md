@@ -7,12 +7,17 @@ For the clock generation, "generate_clock.cc" should be modified with with the d
   The dual-Dirac model is employed for the simulation of the jitter clock. 
   The histogram is stored in the root file, an overlay waveform of the first few hundred cycles (for a given # of cycle window) is printed on the PDF file, and the generated half-period information are available in the txt file.
   
+  A TDC data analyzer for the clock monitoring is added. Right now, it supports data format of the GPX2 TDC from AMS. 
+  
   After installing ROOT analysis framework simply type 'make' then:
   
   ./spect_jitter
   
   ./gen_clock
   
+  ./analyze_tdc
+  
 **Important**
   
   The library requires ROOT6 (mainly for the plotting functionality).
+  https://root.cern.ch/
