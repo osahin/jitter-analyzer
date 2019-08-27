@@ -14,7 +14,7 @@ ifndef ROOTSYS
 $(error ROOTSYS is not defined!)
 endif
 
-ROOT_LIBS = `root-config --libs` -lGenVector -lMathMore -lMinuit
+ROOT_LIBS = `root-config --libs` -lGenVector  -lMinuit
 ifeq ($(OMP_ENABLE),1)
 	CXX_FLAGS =  -O3 -fPIC -fopenmp `root-config --cflags`
 else
