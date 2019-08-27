@@ -1,4 +1,4 @@
-#include "../lib/csv_reader.h"
+r#include "../lib/csv_reader.h"
 #include <TString.h>
 #include <TObjString.h>
 #include <cmath>
@@ -13,8 +13,8 @@ bool csv_reader::read( const std::string & fileName, source_jitter & sj, TString
   static const int sizeTDCCont = 14;  /* output of AMS GPX2 TDC sw */ 
   std::fstream csv_file(fileName);
   if(!csv_file){
-    
-    std::cout << "File does not exist" << std::endl;
+    std::cout <<  "Error. No file named: \" "+ fileName + "\" exists" << std::endl;
+    throw 1; //throw expression arbitrary int
     return false;
   }
     std::vector<double> jitterValues( sizeJitterCont, 0);
